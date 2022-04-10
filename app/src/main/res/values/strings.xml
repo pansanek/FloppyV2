@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Floppy</string>
+    <string name="logoicon">Logo</string>
+    <string name="profile">Profile</string>
+    <string name="creatortext">Контакты</string>
+    <string name="mainpage">Главная</string>
+    <string name="list">Список</string>
+    <string name="name">FLOPPY</string>
+    <string name="desc">Ваша домашняя медиатека</string>
+</resources>

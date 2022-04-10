@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "760670943382",
+    "project_id": "floppy-de441",
+    "firebase_url": "https://floppy-de441-default-rtdb.europe-west1.firebasedatabase.app",
+    "storage_bucket": "floppy-de441.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760670943382:android:ce351b12af7a62c5c8eab7",
+        "android_client_info": {
+          "package_name": "com.potemkinas.floppy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760670943382-203oijcsqd39o6d1glv6ubct8aqgl2lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.potemkinas.floppy",
+            "certificate_hash": "709e186e3bdfd725dfa1ee617070e94063018880"
+          }
+        },
+        {
+          "client_id": "760670943382-62pt6irnsqra9pkdamhvadcde03f3d7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYz-oxWIU-qL9JtqeOCkDdAPvbsaX_jhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760670943382-62pt6irnsqra9pkdamhvadcde03f3d7h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
