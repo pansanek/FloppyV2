@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<Category> categoryList = new ArrayList<>();
-        categoryList.add(new Category(2,"Фото","photo","#4AC5C9"));
-        categoryList.add(new Category(1,"Видео","video","#4AC5C9"));
+        categoryList.add(new Category(2,"Фото","photo","#2b2d4b"));
+        categoryList.add(new Category(1,"Видео","video","#2b2d4b"));
         setCategoryRecycler(categoryList);
 
 
@@ -51,10 +51,12 @@ public class MainActivity extends AppCompatActivity {
     public void onClickProfile(View view) {
         Intent intent=new Intent(this, ProfilePage.class);
         startActivity(intent);
+        finish();
     }
     public void onClickSettings(View view) {
         Intent intent=new Intent(this, settings.class);
         startActivity(intent);
+        finish();
     }
 
 

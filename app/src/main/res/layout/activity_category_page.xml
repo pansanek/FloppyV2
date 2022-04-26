@@ -37,6 +37,22 @@
         app:layout_constraintTop_toBottomOf="@+id/categoryPageTitle"
         app:layout_constraintVertical_bias="0.051" />
 
+    <Button
+        android:id="@+id/AddFromFilesPage"
+        android:layout_width="204dp"
+        android:layout_height="79dp"
+        android:layout_marginBottom="116dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="Добавить с устройства"
+        android:textColor="@color/greywhite"
+        app:backgroundTint="@color/darkest"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonCameraPage"
+        app:layout_constraintVertical_bias="0.931" />
+
     <TextView
         android:id="@+id/categoryPageTitle"
         android:layout_width="wrap_content"

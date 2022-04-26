@@ -64,6 +64,9 @@
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/drawable/ic_settings.xml" value="0.3974358974358974" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/drawable/ic_user.xml" value="0.3974358974358974" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/drawable/ic_video.xml" value="0.3974358974358974" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/drawable/prog_bg_round.xml" value="0.237" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_add_from_device.xml" value="0.3875" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_add_video_from_device.xml" value="0.3875" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_added_photo.xml" value="0.3605072463768116" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_added_video.xml" value="0.2817028985507246" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_category_page.xml" value="0.3523550724637681" />
@@ -72,11 +75,21 @@
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_photo_camera_page.xml" value="0.35643115942028986" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_profile_page.xml" value="0.3605072463768116" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_settings.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/activity_splash.xml" value="0.11775362318840579" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/add_from_device_widget.xml" value="0.25" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/category_item.xml" value="0.3523550724637681" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/image_item.xml" value="0.3875" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/progress_dialog.xml" value="0.10034722222222223" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/reg_window.xml" value="0.29528985507246375" />
         <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/singin_window.xml" value="0.27219202898550726" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/video_item.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyApp/app/src/main/res/layout/video_window.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/alexp/AndroidStudioProjects/FloppyAppV2/app/src/main/res/layout/activity_add_video_from_device.xml" value="0.29375" />
       </map>
     </option>
+  </component>
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="D:/Курсач" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

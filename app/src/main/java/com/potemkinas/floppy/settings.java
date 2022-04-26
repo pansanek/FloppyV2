@@ -20,10 +20,12 @@ public class settings extends AppCompatActivity {
     public void onClickProfile(View view) {
         Intent intent=new Intent(this, ProfilePage.class);
         startActivity(intent);
+        finish();
     }
     public void onClickHome(View view) {
         Intent intent=new Intent(this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
     public void onClickDevInfo(View view) {
         TextView textView = (TextView) findViewById(R.id.DevInfoText);
