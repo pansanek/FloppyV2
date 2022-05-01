@@ -16,7 +16,7 @@
         android:text="Выберите файл"
         android:textColor="@color/greywhite"
 
-        app:layout_constraintBottom_toTopOf="@+id/chosenFilepp"
+        app:layout_constraintBottom_toTopOf="@+id/frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,18 +33,31 @@
         app:layout_constraintBottom_toTopOf="@+id/uploadfilebuttonpp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chosenFilepp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/chosenFilepp"
+        app:layout_constraintTop_toBottomOf="@+id/frame" />
+    <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="412dp"
-        android:layout_height="412dp"
+        android:layout_height="400dp"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/darkest"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.25">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chosenFilepp"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/darkest"
+            app:layout_constraintVertical_bias="0.252" />
+    </FrameLayout>
+
 
     <Button
         android:id="@+id/uploadfilebuttonpp"
