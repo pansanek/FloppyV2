@@ -8,7 +8,6 @@
     tools:context=".Profile.ProfilePage">
 
 
-
     <TextView
         android:id="@+id/TextProfilePageTitle"
         android:layout_width="353dp"
@@ -27,15 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="157dp"
-        android:layout_height="153dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="76dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TextProfilePageTitle"
-        app:srcCompat="@drawable/ic_profile1" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="414dp"
@@ -87,61 +78,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="Имя:"
-        android:textColor="@color/darkest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/TextProfilePageTitle" />
-
-    <TextView
-        android:id="@+id/Email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="Эл.Почта:"
-        android:textColor="@color/darkest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/TextProfilePageTitle" />
-
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="34dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="Телефон: "
-        android:textColor="@color/darkest"
-        app:layout_constraintBottom_toTopOf="@+id/NumberOfAddedPhotos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/TextProfilePageTitle" />
-
-    <TextView
-        android:id="@+id/NumberOfAddedPhotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="Фото добавлено:"
-        android:textColor="@color/darkest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/TextProfilePageTitle" />
-
     <Button
         android:id="@+id/buttonD"
         android:layout_width="306dp"
@@ -176,6 +112,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonD"
         app:layout_constraintVertical_bias="0.2" />
+
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextProfilePageTitle"
+        app:layout_constraintVertical_bias="0.0">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_profile1"
+            app:civ_border_color="@color/darkest"
+            app:civ_border_width="2dp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="109dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+            android:id="@+id/Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="Эл.Почта:"
+            android:textColor="@color/darkest"
+ />
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="Имя:"
+                android:textColor="@color/darkest"
+    />
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="Телефон: "
+                android:textColor="@color/darkest"
+               />
+
+            <Button
+                android:id="@+id/changeinfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Изменить профиль"
+                android:textColor="@color/greywhite"/>
+
+            <Button
+                android:id="@+id/changepp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Изменить аватарку"
+                android:onClick="onClickChangePP"
+                android:textColor="@color/greywhite" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

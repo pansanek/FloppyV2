@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -28,9 +29,13 @@ import com.potemkinas.floppy.MainActivity;
 import com.potemkinas.floppy.PhotoCameraPage;
 import com.potemkinas.floppy.R;
 import com.potemkinas.floppy.Upload;
+import com.potemkinas.floppy.models.ProfilePics;
 import com.potemkinas.floppy.models.User;
 import com.potemkinas.floppy.settings;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 
@@ -38,6 +43,8 @@ public class ProfilePage extends AppCompatActivity {
     private TextView name,email,phone,photoNum;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
+    private FirebaseStorage mPPStorage;
+    private DatabaseReference mPPDatabaseRef;
     FirebaseAuth auth;
     private String Uname;
 
@@ -52,10 +59,7 @@ public class ProfilePage extends AppCompatActivity {
         name = (TextView) findViewById(R.id.username);
         email = (TextView) findViewById(R.id.Email);
         phone = (TextView) findViewById(R.id.phone);
-        photoNum=(TextView) findViewById(R.id.NumberOfAddedPhotos);
-        PhotoCount=(PhotoCameraPage.counter);
-        photoNum.setText("Фото добавлено: "+PhotoCount);
-        avatar= findViewById(R.id.ImageView);
+        avatar= findViewById(R.id.profile_image);
         auth = FirebaseAuth.getInstance();
 
         FirebaseUser user = auth.getCurrentUser();
@@ -76,11 +80,39 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
+        mPPDatabaseRef = FirebaseDatabase.getInstance().getReference("ProfilePics");
+        mPPDatabaseRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ProfilePics userPP = snapshot.getValue(ProfilePics.class);
+                loadpicturebyurl(userPP.getFileUrl());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ProfilePage.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
 
 
+    private void loadpicturebyurl(String url){
+        Picasso.with(this)
+                .load(url)
+                .into(avatar, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+    }
 
     public void onClickHome(View view) {
         Intent intent=new Intent(this, MainActivity.class);
@@ -100,6 +132,12 @@ public class ProfilePage extends AppCompatActivity {
     }
     public void onClickAddedVideo(View view) {
         Intent intent=new Intent(this, AddedVideo.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void onClickChangePP(View view) {
+        Intent intent=new Intent(this,profilepicturechange.class);
         startActivity(intent);
         finish();
     }

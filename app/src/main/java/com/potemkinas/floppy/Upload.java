@@ -6,7 +6,6 @@ import com.potemkinas.floppy.models.User;
 public class Upload {
     private String mName;
     private String mFileUrl;
-    private String mKey;
     private String mUID;
 
     public Upload() {
@@ -45,13 +44,4 @@ public class Upload {
         mFileUrl = imageUrl;
     }
 
-    @Exclude
-    public String getKey() {
-        return mKey;
-    }
-
-    @Exclude
-    public void setKey(String key) {
-        mKey = key;
-    }
 }

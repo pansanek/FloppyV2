@@ -1,5 +1,4 @@
-package com.potemkinas.floppy;
-
+package com.potemkinas.floppy.Profile;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,17 +12,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,16 +28,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import com.potemkinas.floppy.AddedPhoto;
+import com.potemkinas.floppy.R;
+import com.potemkinas.floppy.models.ProfilePics;
 import com.squareup.picasso.Picasso;
 
-
-public class add_from_device extends AppCompatActivity {
+public class profilepicturechange extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST =1;
 
     private Button mButtonChooseImage;
     private Button mButtonUpload;
     private Button mTextViewShowUploads;
-    private EditText mEditTextFileName;
     private ImageView mImageView;
     private ProgressBar mProgressBar;
 
@@ -51,44 +48,42 @@ public class add_from_device extends AppCompatActivity {
     private StorageReference mStorageRef,mStorageUserRef;
     private DatabaseReference mDatabaseRef,mDatabaseUserRef;
     private StorageTask mUploadTask;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_from_device);
-        mButtonChooseImage = findViewById(R.id.choosefilebutton);
-        mButtonUpload = findViewById(R.id.uploadfilebutton);
-        mTextViewShowUploads = findViewById(R.id.showfilebutton);
-        mEditTextFileName = findViewById(R.id.edit_text_file_name);
-        mImageView = findViewById(R.id.chosenFile);
-        mProgressBar = findViewById(R.id.progress_bar);
+        setContentView(R.layout.activity_profilepicturechange);
+    mButtonChooseImage = findViewById(R.id.choosefilebuttonpp);
+    mButtonUpload = findViewById(R.id.uploadfilebuttonpp);
+    mTextViewShowUploads = findViewById(R.id.showfilebuttonpp);
+    mImageView = findViewById(R.id.chosenFilepp);
+    mProgressBar = findViewById(R.id.progress_barpp);
         mProgressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        mStorageRef = FirebaseStorage.getInstance().getReference("PhUploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("PhUploads");
+    mStorageRef = FirebaseStorage.getInstance().getReference("ProfilePics");
+    mDatabaseRef = FirebaseDatabase.getInstance().getReference("ProfilePics");
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFileChooser();
-            }
-        });
+        @Override
+        public void onClick(View v) {
+            openFileChooser();
+        }
+    });
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(add_from_device.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                } else {
-                    uploadFile();
-                }
+        @Override
+        public void onClick(View v) {
+            if (mUploadTask != null && mUploadTask.isInProgress()) {
+                Toast.makeText(profilepicturechange.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+            } else {
+                uploadFile();
             }
-        });
+        }
+    });
 
         mTextViewShowUploads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImagesActivity();
-            }
-        });
-    }
+        @Override
+        public void onClick(View v) {
+            openImagesActivity();
+        }
+    });
+}
 
     private void openFileChooser() {
         Intent intent = new Intent();
@@ -100,7 +95,6 @@ public class add_from_device extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(add_from_device.this, "Убедитесь, что вы ввели уникальное название.", Toast.LENGTH_LONG).show();
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
@@ -134,18 +128,18 @@ public class add_from_device extends AppCompatActivity {
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
-                            Toast.makeText(add_from_device.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),downloadUrl.toString(),FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+                            Toast.makeText(profilepicturechange.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            ProfilePics profilePics = new ProfilePics(downloadUrl.toString(),FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                             String uploadId = mDatabaseRef.push().getKey();
 
-                            mDatabaseRef.child(mEditTextFileName.getText().toString().trim()).setValue(upload);
+                            mDatabaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).setValue(profilePics);
 
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(add_from_device.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(profilepicturechange.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -161,7 +155,7 @@ public class add_from_device extends AppCompatActivity {
     }
 
     private void openImagesActivity() {
-        Intent intent = new Intent(this, AddedPhoto.class);
+        Intent intent = new Intent(this, ProfilePage.class);
         startActivity(intent);
     }
 }

@@ -2,7 +2,7 @@ package com.potemkinas.floppy.models;
 
 public class User {
     private String name,email,pass,phone;
-
+    private String mFileUrl;
     public User(){}
 
     public User(String name, String email, String pass, String phone) {
@@ -43,4 +43,5 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

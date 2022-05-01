@@ -39,7 +39,6 @@ import java.util.Random;
 
 public class PhotoCameraPage extends AppCompatActivity {
     public static ImageView imageView;
-    public static int counter=0;
     private static final int REQUEST_CODE_PERMISSION_CAMERA = 5;
     private static final String NOTIFICATION_CHANNEL_ID = "1";
 
@@ -106,7 +105,6 @@ public class PhotoCameraPage extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        counter++;
         button.setAlpha(1);
         }
 
@@ -148,7 +146,6 @@ public class PhotoCameraPage extends AppCompatActivity {
     public void onClickAdd(){
         showNotification();
         Intent intent=new Intent(this,ProfilePage.class);
-        intent.putExtra("counter",counter);
         startActivity(intent);
         finish();
     }
