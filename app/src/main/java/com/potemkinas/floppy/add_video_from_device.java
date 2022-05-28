@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import com.potemkinas.floppy.Profile.ProfilePage;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -48,7 +49,7 @@ public class add_video_from_device extends AppCompatActivity {
     private EditText mEditTextFileName;
     private VideoView mVideoView;
     private ProgressBar mProgressBar;
-
+    private String PhoneModel;
     private Uri mVideoUri;
     private int position =0;
     private String Username;
@@ -65,6 +66,7 @@ public class add_video_from_device extends AppCompatActivity {
         mTextViewShowUploads = findViewById(R.id.showfilebutton);
         mEditTextFileName = findViewById(R.id.edit_text_file_name);
         mVideoView = findViewById(R.id.chosenFile);
+        PhoneModel = android.os.Build.MODEL;
         mProgressBar = findViewById(R.id.progress_bar);
         mProgressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
         mStorageRef = FirebaseStorage.getInstance().getReference("VdUploads");
@@ -142,9 +144,9 @@ public class add_video_from_device extends AppCompatActivity {
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
                             Toast.makeText(add_video_from_device.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),downloadUrl.toString(),FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),downloadUrl.toString(),FirebaseAuth.getInstance().getCurrentUser().getUid().toString(),PhoneModel);
                             String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(mEditTextFileName.getText().toString().trim()).setValue(upload);
+                            mDatabaseRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()+mEditTextFileName.getText().toString().trim()).setValue(upload);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -168,5 +170,21 @@ public class add_video_from_device extends AppCompatActivity {
     private void openImagesActivity() {
         Intent intent = new Intent(this, AddedVideo.class);
         startActivity(intent);
+    }
+
+    public void onClickProfile(View view) {
+        Intent intent=new Intent(this, ProfilePage.class);
+        startActivity(intent);
+        finish();
+    }
+    public void onClickHome(View view) {
+        Intent intent=new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void onClickSettings(View view) {
+        Intent intent=new Intent(this, settings.class);
+        startActivity(intent);
+        finish();
     }
 }

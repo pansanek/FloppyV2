@@ -29,8 +29,10 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import com.potemkinas.floppy.AddedPhoto;
+import com.potemkinas.floppy.MainActivity;
 import com.potemkinas.floppy.R;
 import com.potemkinas.floppy.models.ProfilePics;
+import com.potemkinas.floppy.settings;
 import com.squareup.picasso.Picasso;
 
 public class profilepicturechange extends AppCompatActivity {
@@ -157,5 +159,21 @@ public class profilepicturechange extends AppCompatActivity {
     private void openImagesActivity() {
         Intent intent = new Intent(this, ProfilePage.class);
         startActivity(intent);
+    }
+
+    public void onClickProfile(View view) {
+        Intent intent=new Intent(this, ProfilePage.class);
+        startActivity(intent);
+        finish();
+    }
+    public void onClickHome(View view) {
+        Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void onClickSettings(View view) {
+        Intent intent=new Intent(this, settings.class);
+        startActivity(intent);
+        finish();
     }
 }

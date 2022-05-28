@@ -49,9 +49,6 @@
             android:name=".settings"
             android:exported="false" />
         <activity
-            android:name=".PhotoCameraPage"
-            android:exported="false" />
-        <activity
             android:name=".Profile.ProfilePage"
             android:exported="false" />
         <activity

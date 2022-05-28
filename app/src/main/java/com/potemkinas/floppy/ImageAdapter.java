@@ -40,6 +40,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
             holder.textViewName.setText(uploadCurrent.getName());
+            holder.device_name.setText("Девайс: "+uploadCurrent.getDeviceName());
             Picasso.with(mContext)
                     .load(uploadCurrent.getFileUrl())
                     .fit()
@@ -55,12 +56,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
         public TextView textViewName;
+        public TextView device_name;
         public ImageView imageView;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
 
             textViewName = itemView.findViewById(R.id.text_view_name);
+            device_name = itemView.findViewById(R.id.device_name);
             imageView = itemView.findViewById(R.id.image_view_upload);
 
             itemView.setOnClickListener(this);
@@ -80,7 +83,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Выберите действие");
-            MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Скачать");
+            MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Открыть");
             MenuItem delete = menu.add(Menu.NONE, 2, 2, "Удалить");
 
             doWhatever.setOnMenuItemClickListener(this);

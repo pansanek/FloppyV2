@@ -31,7 +31,6 @@ public class CategoryPage extends AppCompatActivity {
         btnUploadFile = findViewById(R.id.AddFromFilesPage);
         categoryImage.setImageResource(getIntent().getIntExtra("categoryImage",0));
         categoryTitle.setText(getIntent().getStringExtra("categoryTitle"));
-
         if(getIntent().getStringExtra("categoryTitle").equals("Фото")) {
             btnUploadFile.setOnClickListener(v -> showFileAddWindow());
         }
@@ -57,11 +56,7 @@ public class CategoryPage extends AppCompatActivity {
         finish();
     }
 
-    public void onClickAddFromCamera(View view){
-        Intent intent = new Intent(this,PhotoCameraPage.class);
-        startActivity(intent);
-        finish();
-    }
+
     public void onClickSettings(View view) {
         Intent intent=new Intent(this, settings.class);
         startActivity(intent);

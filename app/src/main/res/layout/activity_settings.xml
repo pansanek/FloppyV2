@@ -5,41 +5,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/greywhite"
-    tools:context=".settings">
-
-    <TextView
-        android:id="@+id/DevInfo"
-        android:layout_width="136dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:gravity="center"
-        android:text="Про нас"
-        android:onClick="onClickDevInfo"
-        android:textColor="@color/darkest"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    tools:context=".settings"
+    android:id="@+id/root_elem">
+    <LinearLayout
+        android:id="@+id/nameframe"
+        android:layout_width="413dp"
+        android:layout_height="74dp"
+        android:orientation="horizontal"
+        android:background="@color/darkest"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:onClick="onClickProfile"
+            android:src="@drawable/ic_profile1"
+            app:civ_border_color="@color/greywhite"
+            app:civ_border_width="1dp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="109dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="303dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:paddingRight="20dp"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="10"
+            android:text="НАСТРОЙКИ"
+            android:textColor="@color/greywhite"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.001" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/DevInfo"
+        android:layout_width="239dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center"
+        android:onClick="onClickDevInfo"
+        android:text="Про нас"
+        android:textColor="@color/greywhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <Button
+        android:id="@+id/changeinfo"
+        android:layout_width="236dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:onClick="onClickChangeProfile"
+        android:text="Изменить профиль"
+        android:textColor="@color/greywhite"
+        app:layout_constraintBottom_toTopOf="@+id/DevInfoText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppInfo"
+        app:layout_constraintVertical_bias="0.0" />
 
 
-    <TextView
+    <Button
         android:id="@+id/AppInfo"
-        android:layout_width="213dp"
-        android:layout_height="41dp"
+        android:layout_width="239dp"
+        android:layout_height="63dp"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
         android:onClick="onClickAppInfo"
         android:text="О приложении"
-        android:textColor="@color/darkest"
-        android:textSize="24sp"
+        android:textColor="@color/greywhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@+id/DevInfo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -103,17 +164,7 @@
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.486" />
+        app:layout_constraintVertical_bias="0.905" />
 
-    <ImageView
-        android:id="@+id/DevInfoPic"
-        android:layout_width="315dp"
-        android:layout_height="171dp"
-        app:srcCompat="@drawable/ic_caracal_wildcat_head_silhouette_by_vetherie"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,12 +2,10 @@ package com.potemkinas.floppy.Profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 import android.content.Intent;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,17 +24,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.potemkinas.floppy.AddedPhoto;
 import com.potemkinas.floppy.AddedVideo;
 import com.potemkinas.floppy.MainActivity;
-import com.potemkinas.floppy.PhotoCameraPage;
 import com.potemkinas.floppy.R;
-import com.potemkinas.floppy.Upload;
 import com.potemkinas.floppy.models.ProfilePics;
 import com.potemkinas.floppy.models.User;
 import com.potemkinas.floppy.settings;
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
 
 
 public class ProfilePage extends AppCompatActivity {
@@ -69,7 +61,7 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User myname = snapshot.getValue(User.class);
-                name.setText("Имя: " + myname.getName());
+                name.setText(myname.getName());
                 email.setText("Эл.Почта: " + myname.getEmail());
                 phone.setText("Телефон: " + myname.getPhone());
             }
@@ -141,4 +133,5 @@ public class ProfilePage extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }

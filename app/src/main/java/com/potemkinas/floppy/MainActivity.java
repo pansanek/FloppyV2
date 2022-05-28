@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         categoryList.add(new Category(1,"Видео","video","#2b2d4b"));
         setCategoryRecycler(categoryList);
 
-
     }
 
     private void setCategoryRecycler(List<Category> categoryList) {

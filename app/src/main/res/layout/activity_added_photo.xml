@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/greywhite"
-    tools:context=".AddedVideo">
+    tools:context=".AddedPhoto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -56,26 +56,54 @@
             app:srcCompat="@drawable/ic_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/krona_one"
-        android:gravity="center"
-        android:shadowColor="@color/darkest"
-        android:shadowDx="10"
-        android:shadowDy="10"
-        android:shadowRadius="10"
-        android:text="ФОТО"
-        android:textColor="@color/dark"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/nameframe"
+        android:layout_width="413dp"
+        android:layout_height="74dp"
+        android:orientation="horizontal"
+        android:background="@color/darkest"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:onClick="onClickProfile"
+            android:src="@drawable/ic_profile1"
+            app:civ_border_color="@color/greywhite"
+            app:civ_border_width="1dp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="109dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="315dp"
+            android:paddingLeft="20dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="left"
+            android:layout_marginLeft="20dp"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:layout_marginBottom="10dp"
+            android:shadowRadius="10"
+            android:text="ФОТО"
+            android:textColor="@color/greywhite"
+            android:textSize="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.001" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress_circle"
@@ -86,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/nameframe" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -95,6 +123,31 @@
         app:layout_constraintBottom_toTopOf="@id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/nameframe" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/openpictureframe"
+        android:background="@color/darkest"
+        android:visibility="invisible">
 
+        <ImageView
+            android:id="@+id/openpicture"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/backbutton"
+            android:layout_width="71dp"
+            android:layout_height="65dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:onClick="BackButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="?attr/homeAsUpIndicator" />
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

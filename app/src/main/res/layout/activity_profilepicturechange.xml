@@ -6,7 +6,145 @@
     android:layout_height="match_parent"
     android:background="@color/greywhite"
     tools:context=".Profile.profilepicturechange">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="414dp"
+        android:layout_height="50dp"
+        android:background="@color/darkest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent">
 
+
+        <ImageView
+            android:id="@+id/settings"
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="76dp"
+            android:onClick="onClickSettings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.47"
+            app:srcCompat="@drawable/ic_settings" />
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="186dp"
+            android:onClick="onClickProfile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.47"
+            app:srcCompat="@drawable/ic_user" />
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+
+            android:layout_marginEnd="304dp"
+            android:onClick="onClickHome"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.529"
+            app:srcCompat="@drawable/ic_home" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/krona_one"
+        android:gravity="center"
+        android:shadowColor="@color/darkest"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="10"
+        android:text="Изменение аватара"
+        android:textColor="@color/dark"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025" />
+    <ProgressBar
+        android:outlineSpotShadowColor="@color/dark"
+        android:id="@+id/progress_barpp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/darkest"
+        app:layout_constraintBottom_toTopOf="@+id/uploadfilebuttonpp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame" />
+
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="397dp"
+        android:layout_height="304dp"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.451">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chosenFilepp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/darkest"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.252" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/uploadfilebuttonpp"
+        android:layout_width="125dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="150dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="253dp"
+        android:backgroundTint="@color/darkest"
+        android:text="Загрузите файл"
+        android:textSize="10dp"
+        android:textColor="@color/greywhite"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_barpp" />
+
+    <Button
+        android:id="@+id/showfilebuttonpp"
+        android:layout_width="125dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="150dp"
+        android:layout_marginStart="253dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="33dp"
+        android:textSize="10dp"
+        android:backgroundTint="@color/darkest"
+        android:text="Перейти в профиль"
+        android:textColor="@color/greywhite"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_barpp" />
 
     <Button
         android:id="@+id/choosefilebuttonpp"
@@ -21,75 +159,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.729" />
 
-    <ProgressBar
-        android:outlineSpotShadowColor="@color/dark"
-        android:id="@+id/progress_barpp"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/darkest"
-        app:layout_constraintBottom_toTopOf="@+id/uploadfilebuttonpp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frame" />
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="412dp"
-        android:layout_height="400dp"
-        android:foregroundGravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/chosenFilepp"
-            android:layout_gravity="center"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/darkest"
-            app:layout_constraintVertical_bias="0.252" />
-    </FrameLayout>
-
-
-    <Button
-        android:id="@+id/uploadfilebuttonpp"
-        android:layout_width="125dp"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="150dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="253dp"
-        android:layout_marginBottom="52dp"
-        android:backgroundTint="@color/darkest"
-        android:text="Загрузите файл"
-        android:textColor="@color/greywhite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_barpp" />
-
-    <Button
-        android:id="@+id/showfilebuttonpp"
-        android:layout_width="125dp"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="150dp"
-        android:layout_marginStart="253dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="52dp"
-        android:backgroundTint="@color/darkest"
-        android:text="Перейти в профиль"
-        android:textColor="@color/greywhite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_barpp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.potemkinas.floppy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -42,8 +44,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.potemkinas.floppy.Profile.ProfilePage;
 import com.potemkinas.floppy.ImageAdapter;
+import com.potemkinas.floppy.models.ProfilePics;
 import com.potemkinas.floppy.models.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 
 public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItemClickListener{
     private RecyclerView mRecyclerView;
@@ -57,15 +61,17 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
     private DatabaseReference mUserRef;
     private ValueEventListener mDBListener;
     private List<Upload> mUploads;
-
+    private FirebaseStorage mPPStorage;
+    private DatabaseReference mPPDatabaseRef;
     private String mName;
     private String mVideoUrl;
     private String mUID;
+    private String PhoneModel;
     private String mUserId;
 
     ProgressDialog progressDialog;
     private String Id;
-
+    ImageView avatar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +80,7 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-
+        avatar= findViewById(R.id.profile_image);
         mProgressCircle = findViewById(R.id.progress_circle);
         mProgressCircle.getIndeterminateDrawable()
                 .setColorFilter(ContextCompat.getColor(this, R.color.darkest), PorterDuff.Mode.SRC_IN );
@@ -102,8 +108,9 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
                     mName = upload.getName();
                     mVideoUrl = upload.getFileUrl();
                     mUID = upload.getmUID();
+                    PhoneModel = upload.getDeviceName();
                     if(mUID.equals(Id)) {
-                        mUploads.add(new Upload(mName, mVideoUrl, mUID));
+                        mUploads.add(new Upload(mName, mVideoUrl, mUID,PhoneModel));
                     }
 
 
@@ -121,6 +128,36 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
+
+        mPPDatabaseRef = FirebaseDatabase.getInstance().getReference("ProfilePics");
+        mPPDatabaseRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ProfilePics userPP = snapshot.getValue(ProfilePics.class);
+                loadpicturebyurl(userPP.getFileUrl());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(AddedVideo.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    private void loadpicturebyurl(String url){
+        Picasso.with(this)
+                .load(url)
+                .into(avatar, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
     }
 
     public void onClickProfile(View view) {
@@ -153,11 +190,12 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
     public void onDeleteClick(int position) {
         Upload selectedItem = mUploads.get(position);
         String picname = mUploads.get(position).getName();
+        String username = mUploads.get(position).getmUID();
         StorageReference imageRef = mStorage.getReferenceFromUrl(selectedItem.getFileUrl());
         imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                mDatabaseRef.child(picname).removeValue();
+                mDatabaseRef.child(username+picname).removeValue();
                 mUploads.remove(position);
                 mAdapter.notifyDataSetChanged();
                 Toast.makeText(AddedVideo.this, "Item deleted", Toast.LENGTH_SHORT).show();
@@ -181,4 +219,6 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
 }

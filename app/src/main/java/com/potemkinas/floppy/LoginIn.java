@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.potemkinas.floppy.Profile.ProfilePage;
+import com.potemkinas.floppy.Profile.profilepicturechange;
 import com.potemkinas.floppy.models.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -150,12 +151,15 @@ public class LoginIn extends AppCompatActivity {
                                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user).addOnSuccessListener(unused -> Snackbar.make(root,"Пользователь добавлен!",Snackbar.LENGTH_SHORT).show());
                             });
-
+                    openImagesActivity();
                 }
             });
 
             dialog.show();
         }
-
+    private void openImagesActivity() {
+        Intent intent = new Intent(this, profilepicturechange.class);
+        startActivity(intent);
+    }
 }
 

@@ -40,6 +40,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     public void onBindViewHolder(VideoViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
+        holder.device_name_vid.setText("Девайс: "+uploadCurrent.getDeviceName());
     }
 
     @Override
@@ -50,12 +51,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     public class VideoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
         public TextView textViewName;
+        public TextView device_name_vid;
 
         public VideoViewHolder(View itemView) {
             super(itemView);
 
             textViewName = itemView.findViewById(R.id.text_view_name);
-
+            device_name_vid = itemView.findViewById(R.id.device_name_vid);
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
         }

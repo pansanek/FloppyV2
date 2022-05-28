@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="320dp"
-        android:layout_height="278dp"
+        android:layout_width="292dp"
+        android:layout_height="254dp"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/ic_caracal_wildcat_head_silhouette_by_vetherie" />
 </androidx.constraintlayout.widget.ConstraintLayout>

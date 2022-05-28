@@ -21,7 +21,7 @@
         android:shadowRadius="5"
         android:text="ПРОФИЛЬ"
         android:textColor="@color/dark"
-        android:textSize="40sp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -80,11 +80,12 @@
 
     <Button
         android:id="@+id/buttonD"
-        android:layout_width="306dp"
-        android:layout_height="40dp"
+        android:layout_width="308dp"
+        android:layout_height="76dp"
         android:backgroundTint="@color/darkest"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
+        android:textSize="20dp"
         android:onClick="onClickAddedPhoto"
         android:text="ДОБАВЛЕННЫЕ ФОТО"
         android:textColor="@color/greywhite"
@@ -98,11 +99,12 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="306dp"
-        android:layout_height="40dp"
+        android:layout_width="308dp"
+        android:layout_height="76dp"
         android:backgroundTint="@color/darkest"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
+        android:textSize="20dp"
         android:onClick="onClickAddedVideo"
         android:text="ДОБАВЛЕННЫЕ ВИДЕО"
         android:textColor="@color/greywhite"
@@ -123,23 +125,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextProfilePageTitle"
         app:layout_constraintVertical_bias="0.0">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_profile1"
-            app:civ_border_color="@color/darkest"
-            android:layout_gravity="center"
-            app:civ_border_width="2dp"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="109dp" />
 
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="111dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_profile1"
+                app:civ_border_color="@color/darkest"
+                app:civ_border_width="2dp"
+                tools:layout_editor_absoluteX="136dp"
+                tools:layout_editor_absoluteY="109dp" />
+            <Button
+                android:id="@+id/changepp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="Изменить аватарку"
+                android:onClick="onClickChangePP"
+                android:textColor="@color/greywhite" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
-
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="Имя:"
+                android:textColor="@color/darkest"
+                />
             <TextView
             android:id="@+id/Email"
             android:layout_width="wrap_content"
@@ -148,15 +174,7 @@
             android:text="Эл.Почта:"
             android:textColor="@color/darkest"
  />
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:fontFamily="@font/comfortaa_bold"
-                android:text="Имя:"
-                android:textColor="@color/darkest"
-    />
             <TextView
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
@@ -166,20 +184,7 @@
                 android:textColor="@color/darkest"
                />
 
-            <Button
-                android:id="@+id/changeinfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Изменить профиль"
-                android:textColor="@color/greywhite"/>
 
-            <Button
-                android:id="@+id/changepp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Изменить аватарку"
-                android:onClick="onClickChangePP"
-                android:textColor="@color/greywhite" />
 
         </LinearLayout>
 

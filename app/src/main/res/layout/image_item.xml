@@ -16,18 +16,35 @@
             android:id="@+id/image_view_upload"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center" >
         <TextView
             android:id="@+id/text_view_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:text="Name"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/darkest"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Device_name"
+            android:textColor="@color/darkest"
+            android:textSize="10sp" />
+        </FrameLayout>
 
     </LinearLayout>
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    app:cardElevation="10dp"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        app:cardElevation="10dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,9 +15,9 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailField"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:id="@+id/nameField"
+            android:hint="Введите имя"
+            android:inputType="textPersonName"
             android:text=""
             android:textColor="@color/dark"
             android:textColorHint="@color/dark"
@@ -28,12 +28,14 @@
             app:met_errorColor="@color/dark"
             app:met_minCharacters="1"
             />
+
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/passField"
-            android:hint="Введите пароль"
-            android:inputType="textPassword"
+            android:id="@+id/phoneField"
+            android:hint="Телефон"
+            android:inputType="phone"
             android:text=""
             android:textColor="@color/dark"
             android:textColorHint="@color/dark"
@@ -42,7 +44,7 @@
             app:met_baseColor="@color/dark"
             app:met_primaryColor="@color/darkest"
             app:met_errorColor="@color/dark"
-            app:met_minCharacters="8"
+            app:met_minCharacters="11"
             />
 
 
