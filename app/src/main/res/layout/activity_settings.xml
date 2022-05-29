@@ -85,6 +85,20 @@
         app:layout_constraintTop_toBottomOf="@+id/AppInfo"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/rules"
+        android:layout_width="236dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:onClick="onClickRules"
+        android:text="Правила пользования"
+        android:textColor="@color/greywhite"
+        app:layout_constraintBottom_toTopOf="@+id/DevInfoText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeinfo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/AppInfo"

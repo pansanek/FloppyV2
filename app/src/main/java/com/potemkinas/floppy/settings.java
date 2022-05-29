@@ -100,6 +100,27 @@ public class settings extends AppCompatActivity {
         textView.setText("Floppy - это домашняя медиатека для создания, загрузки и хранения ваших фотографий и видео.");
         textView.setAlpha(1);
     }
+    public void onClickRules(View view) {
+        showWindow();
+    }
+
+    private void showWindow() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Правила использования приложения 'Floppy'");
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View signin_window=inflater.inflate(R.layout.rules_window,null);
+        dialog.setView(signin_window);
+
+        dialog.setPositiveButton("Понятно", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+
+            }
+        });
+        dialog.show();
+    }
 
     public void onClickChangeProfile(View view) {
         showInfoChangeWindow();

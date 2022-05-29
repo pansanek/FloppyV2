@@ -47,6 +47,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.potemkinas.floppy.Profile.ProfilePage;
 import com.potemkinas.floppy.ImageAdapter;
+import com.potemkinas.floppy.models.Admin;
 import com.potemkinas.floppy.models.ProfilePics;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.squareup.picasso.Picasso;
@@ -56,18 +57,16 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
     ImageAdapter mAdapter;
     FirebaseAuth auth;
     private ProgressBar mProgressCircle;
-    boolean isImageFitToScreen;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
-    private DatabaseReference mUserRef;
-    private ValueEventListener mDBListener;
+    private DatabaseReference mAdminRef;
+    public boolean isItAdmin;
+    private String AUID;
     private List<Upload> mUploads;
-    ImageView imageView;
     private String mName;
     private String mImageUrl;
     private String mUID;
     private String PhoneModel;
-    private String mUserId;
     private FrameLayout openphotoframe;
     private ImageView openphoto;
     private LinearLayout nameframe;
@@ -78,6 +77,7 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isItAdmin=false;
         setContentView(R.layout.activity_added_photo);
         RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(this,RecyclerView.VERTICAL,true);
         mRecyclerView = findViewById(R.id.recycler_view);
@@ -103,6 +103,24 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
         avatar= findViewById(R.id.profile_image);
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("PhUploads");
+        mAdminRef = FirebaseDatabase.getInstance().getReference("Admin");
+        mAdminRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot :snapshot.getChildren()) {
+                    Admin admin = postSnapshot.getValue(Admin.class);
+                    AUID = admin.getUID();
+                    if(AUID.equals(Id)){
+                        isItAdmin = true;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -113,8 +131,12 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
                     mName = upload.getName();
                     mImageUrl = upload.getFileUrl();
                     mUID = upload.getmUID();
-                    PhoneModel = upload.getDeviceName();
+                    PhoneModel = "Девайс: "+upload.getDeviceName();
                     if(mUID.equals(Id)) {
+                        mUploads.add(new Upload(mName, mImageUrl, mUID,PhoneModel));
+                    }
+                    if(isItAdmin){
+                        PhoneModel = "UID пользователя: "+upload.getmUID();
                         mUploads.add(new Upload(mName, mImageUrl, mUID,PhoneModel));
                     }
 
@@ -235,5 +257,9 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
         mRecyclerView.setVisibility(View.VISIBLE);
         nameframe.setVisibility(View.VISIBLE);
 
+    }
+
+    public boolean isItAdmin() {
+        return isItAdmin;
     }
 }

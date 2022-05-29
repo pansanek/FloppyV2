@@ -40,13 +40,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
             holder.textViewName.setText(uploadCurrent.getName());
-            holder.device_name.setText("Девайс: "+uploadCurrent.getDeviceName());
+            holder.device_name.setText(uploadCurrent.getDeviceName());
             Picasso.with(mContext)
                     .load(uploadCurrent.getFileUrl())
                     .fit()
                     .centerCrop()
                     .into(holder.imageView);
     }
+
 
     @Override
     public int getItemCount() {

@@ -25,6 +25,7 @@ import com.potemkinas.floppy.AddedPhoto;
 import com.potemkinas.floppy.AddedVideo;
 import com.potemkinas.floppy.MainActivity;
 import com.potemkinas.floppy.R;
+import com.potemkinas.floppy.models.Admin;
 import com.potemkinas.floppy.models.ProfilePics;
 import com.potemkinas.floppy.models.User;
 import com.potemkinas.floppy.settings;
@@ -32,16 +33,17 @@ import com.squareup.picasso.Picasso;
 
 
 public class ProfilePage extends AppCompatActivity {
-    private TextView name,email,phone,photoNum;
+    private TextView name,email,phone,isItAdmin;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
     private FirebaseStorage mPPStorage;
     private DatabaseReference mPPDatabaseRef;
     FirebaseAuth auth;
     private String Uname;
-
+    private DatabaseReference mAdminRef;
+    private String AUID;
     ImageView avatar;
-
+    private String Id;
     private int PhotoCount;
 
     @Override
@@ -51,10 +53,31 @@ public class ProfilePage extends AppCompatActivity {
         name = (TextView) findViewById(R.id.username);
         email = (TextView) findViewById(R.id.Email);
         phone = (TextView) findViewById(R.id.phone);
+        isItAdmin=(TextView) findViewById(R.id.isItAdmin) ;
         avatar= findViewById(R.id.profile_image);
         auth = FirebaseAuth.getInstance();
 
         FirebaseUser user = auth.getCurrentUser();
+
+        Id = user.getUid().toString();
+        mAdminRef = FirebaseDatabase.getInstance().getReference("Admin");
+        mAdminRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot :snapshot.getChildren()) {
+                    Admin admin = postSnapshot.getValue(Admin.class);
+                    AUID = admin.getUID();
+                    if(AUID.equals(Id)){
+                        isItAdmin.setAlpha(1);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
 
         mDatabaseRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {

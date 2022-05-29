@@ -183,6 +183,15 @@
                 android:text="Телефон: "
                 android:textColor="@color/darkest"
                />
+            <TextView
+                android:id="@+id/isItAdmin"
+                android:alpha="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="Администратор"
+                android:textColor="@color/darkest"
+                />
 
 
 

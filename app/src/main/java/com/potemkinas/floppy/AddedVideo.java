@@ -44,6 +44,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.potemkinas.floppy.Profile.ProfilePage;
 import com.potemkinas.floppy.ImageAdapter;
+import com.potemkinas.floppy.models.Admin;
 import com.potemkinas.floppy.models.ProfilePics;
 import com.potemkinas.floppy.models.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -58,8 +59,9 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
     private VideoView mVideoView;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
-    private DatabaseReference mUserRef;
-    private ValueEventListener mDBListener;
+    private DatabaseReference mAdminRef;
+    public boolean isItAdmin;
+    private String AUID;
     private List<Upload> mUploads;
     private FirebaseStorage mPPStorage;
     private DatabaseReference mPPDatabaseRef;
@@ -75,6 +77,7 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isItAdmin=false;
         setContentView(R.layout.activity_added_video);
         RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(this,RecyclerView.VERTICAL,true);
         mRecyclerView = findViewById(R.id.recycler_view);
@@ -98,6 +101,24 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
 
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("VdUploads");
+        mAdminRef = FirebaseDatabase.getInstance().getReference("Admin");
+        mAdminRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot :snapshot.getChildren()) {
+                    Admin admin = postSnapshot.getValue(Admin.class);
+                    AUID = admin.getUID();
+                    if(AUID.equals(Id)){
+                        isItAdmin = true;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -112,7 +133,10 @@ public class AddedVideo extends AppCompatActivity implements VideoAdapter.OnItem
                     if(mUID.equals(Id)) {
                         mUploads.add(new Upload(mName, mVideoUrl, mUID,PhoneModel));
                     }
-
+                    if(isItAdmin){
+                        PhoneModel = "UID пользователя: "+upload.getmUID();
+                        mUploads.add(new Upload(mName, mVideoUrl, mUID,PhoneModel));
+                    }
 
 
                 }
