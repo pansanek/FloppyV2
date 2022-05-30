@@ -2,9 +2,13 @@ package com.potemkinas.floppy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -56,7 +60,7 @@ public class add_video_from_device extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
-
+    int REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +75,11 @@ public class add_video_from_device extends AppCompatActivity {
         mProgressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
         mStorageRef = FirebaseStorage.getInstance().getReference("VdUploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("VdUploads");
+        int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE);
+        }
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

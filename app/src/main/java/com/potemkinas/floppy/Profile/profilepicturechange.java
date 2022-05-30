@@ -1,9 +1,13 @@
 package com.potemkinas.floppy.Profile;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -43,7 +47,7 @@ public class profilepicturechange extends AppCompatActivity {
     private Button mTextViewShowUploads;
     private ImageView mImageView;
     private ProgressBar mProgressBar;
-
+    int REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE=1;
     private Uri mImageUri;
     private int position =0;
     private String Username;
@@ -59,10 +63,18 @@ public class profilepicturechange extends AppCompatActivity {
     mTextViewShowUploads = findViewById(R.id.showfilebuttonpp);
     mImageView = findViewById(R.id.chosenFilepp);
     mProgressBar = findViewById(R.id.progress_barpp);
-        mProgressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+    mProgressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
     mStorageRef = FirebaseStorage.getInstance().getReference("ProfilePics");
     mDatabaseRef = FirebaseDatabase.getInstance().getReference("ProfilePics");
-        mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
+
+    int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE);
+    }
+
+
+    mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             openFileChooser();
