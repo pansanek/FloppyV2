@@ -140,8 +140,6 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
                         mUploads.add(new Upload(mName, mImageUrl, mUID,PhoneModel));
                     }
 
-
-
                 }
 
                 mAdapter.notifyDataSetChanged();
@@ -212,9 +210,8 @@ public class AddedPhoto extends AppCompatActivity implements ImageAdapter.OnItem
         mRecyclerView.setVisibility(View.INVISIBLE);
         nameframe.setVisibility(View.INVISIBLE);
         openphotobyurl(Url);
-
-
         }
+
     private void openphotobyurl(String url){
         Picasso.with(this)
                 .load(url).resize(0, openphotoframe.getHeight())

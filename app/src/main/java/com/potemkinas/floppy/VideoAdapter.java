@@ -40,7 +40,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     public void onBindViewHolder(VideoViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
-        holder.device_name_vid.setText("Девайс: "+uploadCurrent.getDeviceName());
+        holder.device_name_vid.setText(uploadCurrent.getDeviceName());
     }
 
     @Override

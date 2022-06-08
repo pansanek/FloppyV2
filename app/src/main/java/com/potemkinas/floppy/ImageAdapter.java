@@ -31,13 +31,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     }
 
     @Override
-    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) { //класс в котором указан дизайн элемента
         View v = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent, false);
         return new ImageViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ImageViewHolder holder, int position) {
+    public void onBindViewHolder(ImageViewHolder holder, int position) { //класс в котором указано, что нужно подставить в дизайн
         Upload uploadCurrent = mUploads.get(position);
             holder.textViewName.setText(uploadCurrent.getName());
             holder.device_name.setText(uploadCurrent.getDeviceName());
